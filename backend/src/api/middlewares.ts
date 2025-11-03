@@ -1,23 +1,25 @@
 import { defineMiddlewares } from "@medusajs/medusa";
 import { tenantContextMiddleware } from "./middlewares/tenant-context";
+import { auditMiddleware } from "./middlewares/audit-middleware";
 
 /**
  * Middleware Configuration
  * 
- * Tenant context middleware is applied to all store routes to:
- * - Auto-detect tenant from domain/subdomain/header
- * - Inject tenant into request context
- * - Enable tenant-scoped queries
+ * Applied in order:
+ * 1. Tenant Context - Detect and inject tenant
+ * 2. Audit Logging - Log all mutations (POST/PUT/PATCH/DELETE)
+ * 
+ * Note: Authentication middleware is applied by Medusa automatically
  */
 export default defineMiddlewares({
   routes: [
     {
       matcher: "/store/*",
-      middlewares: [tenantContextMiddleware],
+      middlewares: [tenantContextMiddleware, auditMiddleware],
     },
     {
       matcher: "/admin/*",
-      middlewares: [tenantContextMiddleware],
+      middlewares: [tenantContextMiddleware, auditMiddleware],
     },
   ],
 });
