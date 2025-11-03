@@ -318,7 +318,6 @@ const CreateTenantPage = () => {
 
 export const config = defineRouteConfig({
   label: "Create Tenant",
-  path: "/tenants/create",
 });
 
 export default CreateTenantPage;

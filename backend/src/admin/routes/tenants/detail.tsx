@@ -262,7 +262,6 @@ const TenantDetailPage = () => {
 
 export const config = defineRouteConfig({
   label: "Tenant Details",
-  path: "/tenants/:id",
 });
 
 export default TenantDetailPage;
