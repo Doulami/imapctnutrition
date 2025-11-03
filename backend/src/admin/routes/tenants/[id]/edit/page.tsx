@@ -347,6 +347,7 @@ const EditTenantPage = () => {
 
 export const config = defineRouteConfig({
   label: "Edit Tenant",
+  path: "/tenants/:id/edit",
 });
 
 export default EditTenantPage;
